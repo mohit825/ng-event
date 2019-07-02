@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  
+  <form class=" container-fluid form-inline md-form mr-auto mb-4">
+  <input class="form-control mr-sm-2" type="text" [(ngModel)]="filter" 
+  name= "search"
+  placeholder="SEARCH EVENTS" aria-label="Search">
+  <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit">Search</button>
+</form>
+
+<div class="row " *ngIf="((events | filtertext: filter)?.length==0)">
+  <div class="container-fluid">
+    <div class="jumbotron"><h2>No Events Found :( </h2></div>
+  </div>
+</div>
+<div class = "events" *ngFor= "let event of events | filtertext: filter">
+    <div class="container-fluid event-items ">
+      <div class="row mb-4">
+        <div class="col col-md-3 col-12">{{event.name}}</div>
+        <div class="col col-md-3 col-12"><img id= "imgs" src="{{event.img}}"></div>
+        <div class="col col-md-3 col-12">{{event.date}}</div>
+        <div class="col col-md-3 col-12 text-muted" >Seats Left {{event.seats}} 
+          <div *ngIf=" event.seats > 0 ; then thenBlock; else elseBlock "></div>
+          <ng-template #thenBlock>
+            <button class="btn btn-warning" (click) ="bookTicket(event)">Book</button>
+          </ng-template>
+          <ng-template #elseBlock>
+            <button class="btn btn-danger" disabled>Sold Out</button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+</div>
+</div>
+

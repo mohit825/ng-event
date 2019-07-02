@@ -1,0 +1,26 @@
+[
+    {
+        "name" : "ROCK CONCERT",
+        "img"  : "../../assets/rock_concert.jpg",
+        "date" : "July 15th 2019",
+        "seats" : 10
+    },
+    {
+        "name" : "COMEDY CLUB",
+        "img"  : "../../assets/comedy.jpg",
+        "date" : "July 27th 2019",
+        "seats" : 15
+    },
+    {
+        "name" : "THE MAGIC SHOW",
+        "img"  : "../../assets/magic.jpg",
+        "date" : "August 1st 2019",
+        "seats" : 24
+    },
+    {
+        "name" : "SUNBURN",
+        "img"  : "../../assets/sunburn.jpg",
+        "date" : "August 15th 2019",
+        "seats" : 0
+    }
+]

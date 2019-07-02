@@ -1,0 +1,105 @@
+<div class="container-fluid jumbotron">
+      <h1 class="display-2">{{name}}</h1>   
+    <h4>  <span> Seats Left {{leftSeats}} </span></h4>
+</div>
+<div class="container " >
+  <div class="row col-12">
+    <h3><p class="my-para text-muted">Please fill below form to proceed. </p> </h3>
+  </div>
+
+  <form #f="ngForm" (ngSubmit)="submit(f)">
+      <!-- UserName -->
+    <div class="form-group">
+        <label for="userName">User Name</label>
+        <input type="text"
+        required
+        pattern="[a-zA-Z\s]*"  
+        class="form-control"
+        id="userName"
+        ngModel name="user" #user = "ngModel">
+      </div>
+      <!-- Providing Validations Error fields for UserName -->
+      <div class="alert alert-danger" *ngIf="!user.valid && user.touched">
+            <div class="class alert alert-danger" *ngIf="user.errors.required">Name is Required</div>
+            <div class="class alert alert-danger" *ngIf="user.errors.pattern">Only Letter and Spaces</div>
+        </div>
+      
+      
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email" >Email</label>
+        <input class="form-control"
+        required
+        pattern="[a-zA-Z1-9.]+@[A-Za-z]+[.]+com"
+        id ="email" type="text" ngModel name="email" #email="ngModel">
+      </div>
+
+      <!-- Validation Error for E-mail -->
+        <div class="alert alert-danger" *ngIf="!email.valid && email.touched">
+            <div class="class alert alert-danger" *ngIf="email.errors.required">Email is Required</div>
+            <div class="class alert alert-danger" *ngIf="email.errors.pattern">Provide Only Email Pattern</div>
+        </div>
+
+
+      <!-- MobileNumber -->
+      <div class="form-group">
+        <label for="num">Mobile Number</label>
+        <input type="text" 
+        required
+        pattern="[0-9]{10}"
+        class="form-control" id="num" ngModel name="number"
+        #number = "ngModel">
+      </div>
+
+      <!-- validation error for MobileNumber -->
+      <div class="alert alert-danger" *ngIf="!number.valid && number.touched">
+          <div class="class alert alert-danger" *ngIf="number.errors.required">Number is Required</div>
+          <div class="class alert alert-danger" *ngIf="number.errors.pattern">Provide only 10 Digit Number</div>
+      </div>
+
+      <!-- Seat Selection -->
+      <div class="form-group">
+        <label for="seat">Required Seats</label>
+        <select class="form-control" 
+        required
+        ngModel name="select" #select="ngModel"
+         id="seat" (change) = "onChange(select)">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div> 
+      
+
+      <!-- Seat section validation -->
+      <div class="alert alert-danger" *ngIf="!select.valid && select.touched">
+          <div class="class alert alert-danger" *ngIf="select.errors.required">Seats are Required</div>
+
+        </div>
+
+
+      <!-- Creating Attendee DIVs -->
+      <div *ngFor = "let x of dummyArr">
+          <div class="form-group">
+            <label for="attendee">Name of Attendee {{x+2}}</label>
+            <input type="text" class="form-control" 
+            ngModel  name= "attendee" #attendee = "ngModel"
+            required
+            >
+          </div>
+
+          <div class="alert alert-danger" *ngIf="!attendee.valid && attendee.touched">
+              <div class="class alert alert-danger" *ngIf="attendee.errors.required">Attendee Name is Required</div>
+
+          </div>
+      </div>
+    <div class="mb-5">
+      <button class="btn btn-primary mr-5" [disabled] ="!f.valid">Submit</button>
+      <button class="btn btn-warning" (click) = "onCancel()">Cancel</button>
+    </div>
+  </form>
+
+</div>

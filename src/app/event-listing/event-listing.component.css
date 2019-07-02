@@ -1,0 +1,11 @@
+.events{
+    display: flex;
+};
+
+.event-items{
+    flex-wrap: nowrap;
+};
+
+#imgs{
+   object-fit: cover;
+}
